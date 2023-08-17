@@ -375,7 +375,7 @@
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
 
-            var product.price = replace('\r','');
+            var product.price = product.price.replace('\r','');
 
             console.log('Product:', product);
 
