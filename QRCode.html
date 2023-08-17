@@ -19,6 +19,7 @@
       position: relative;
       z-index: 0;
       scroll-behavior: smooth;
+      overflow: hidden;
     }
 
     body::before {
@@ -179,6 +180,10 @@
       font-size: 30px;
       font-weight: bold;
       margin-bottom: 10px;
+    }
+
+    .section-space {
+      height: 20px; /* Imposta l'altezza dello spazio vuoto tra le sezioni */
     }
 
     .product {
@@ -395,6 +400,8 @@
             `;
             container.insertAdjacentHTML('beforeend', html);
           }
+            // Aggiungi uno spazio sotto l'ultimo elemento di prodotto in questa sezione
+            container.insertAdjacentHTML('beforeend', '<div class="section-space"></div>');
         }
       }
 
