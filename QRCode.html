@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+  <link rel="icon" href="images/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+  <title>Menu del Bar</title>
+  <style>
+
+    /* GESTIONE DEL BODY */
+    html, body {
+      background-image: url('images/background/sfondo.jpg');
+      background-repeat: repeat;
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      font-size: 36px;
+      font-family: "Roboto", sans-serif;
+      position: relative;
+      z-index: 0;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: -1;
+    }
+
+    /* GESTIONE LIVELLI */
+    h1, h2, h3 {
+      font-family: "Roboto", sans-serif;
+    }
+
+    /* MEDIA QUERY PER DISPOSITIVI MOBILI CON LARGHEZZA MASSIMA DI 800PX */
+    @media (max-width: 800px) {
+      .descriptions, h2, .product span {
+        text-align: center;
+        font-size: 26px;
+      }
+
+      .category-button {
+        width: 100%;
+        height: 80px;
+        margin: 5px;
+      }
+    }
+
+    /* GESTIONE HEADER */
+    .header {
+      padding: 20px;
+    }
+
+    /* GESTIONE LOGO */
+    .logo {
+      max-width: 1000px;
+      margin-bottom: 10px;
+      margin-left: -50px;
+    }
+
+    /* GESTIONE DEL MENU */
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .menu-instruction {
+      font-weight: bold;
+    }
+
+    /* GESTIONE DEI BOTTONI */
+    .category-button {
+      margin: 5px;
+      padding: 30px 45px;
+      background-color: #f8f8f8;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      width: 200px;
+      height: 140px;
+    }
+
+    .category-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.9));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .category-button .button-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 5px;
+      pointer-events: none;
+    }
+
+    .category-button.caffetteria .button-background {
+      background-image: url('images/products/caffetteria.jpg');
+    }
+
+    .category-button.aperitivi .button-background {
+      background-image: url('images/products/aperitivi.jpeg');
+    }
+
+    .category-button.bibite .button-background {
+      background-image: url('images/products/bibite.jpeg');
+    }
+
+    .category-button.liquori .button-background {
+      background-image: url('images/products/liquori.jpeg');
+    }
+
+    .category-button.birre .button-background {
+      background-image: url('images/products/birre.jpeg');
+    }
+
+    .category-button.vini .button-background {
+      background-image: url('images/products/vini.jpeg');
+    }
+
+    .category-button.cibo .button-background {
+      background-image: url('images/products/cibo.jpeg');
+    }
+
+    .category-button.cibo {
+      width: 280px;
+      height: 120px;
+    }
+
+    .category-button:hover::before {
+      opacity: 1;
+    }
+
+    .category-button img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      margin: auto;
+    }
+
+    .category-description {
+      font-weight: bold;
+    }
+
+    /* GESTIONE DEI PRODOTTI */
+    #products-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin: 40px 0;
+    }
+
+    .section h2 {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .descriptions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .descriptions p {
+      margin: 0;
+    }
+
+    .descriptions img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* GESTIONE SCROLL TOP */
+    #scrollToTopButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 90px;
+      height: 90px;
+      background-color: black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      transform: translateX(-10px);
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+
+    #scrollToTopButton:hover {
+      background-color: darkgray;
+    }
+
+    #scrollToTopButton::before {
+      content: '\25b2';
+      font-size: 24px;
+      color: #888888;
+      transform: translateX(2px);
+    }
+
+    #scrollToTopButton .button-circle {
+      transform-origin: center;
+    }
+  
+  </style>
+
+  <script> /* FUNZIONE PER CARICAMENTO IMMAGINI */
+    function loadImage(className, imagePath) {
+      var imgTag = document.querySelector('.' + className);
+      if (imgTag) {
+        imgTag.src = imagePath;
+      }
+    }
+  </script>
+
+</head>
+<body>
+
+  <!-- HEADER E LOGO -->
+  <header class="header">
+    <h1>Benvenuti al ....</h1>
+    <img class="logo" src="images/logo/logo.png" alt="Logo del Bar">
+  </header>
+
+  <!-- MENU E BOTTONI -->
+  <p class="menu-instruction">Clicca su una categoria per visualizzare i prodotti corrispondenti:</p>
+
+  <nav class="menu">
+    <div class="category-container">
+      <button class="category-button caffetteria" onclick="scrollToSection('caffetteria')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Caffetteria</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button aperitivi" onclick="scrollToSection('aperitivi')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Aperitivi</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button bibite" onclick="scrollToSection('bibite')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Bibite</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button liquori" onclick="scrollToSection('liquori')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Liquori</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button birre" onclick="scrollToSection('birre')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Birre</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button vini" onclick="scrollToSection('vini (calice)')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Vini</div>
+    </div>
+    <div class="category-container">
+      <button class="category-button cibo" onclick="scrollToSection('panini')">
+        <div class="button-background"></div>
+      </button>
+      <div class="category-description">Cibo</div>
+    </div>
+    <!-- Aggiungi altri bottoni per le diverse categorie -->
+  </nav>
+
+<div id="products-container"></div>
+
+  <script>
+    function loadCSVFile(file) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var csvData = decodeURIComponent(xhr.responseText);
+            var products = processData(csvData);
+            generateHTML(products);
+          } else {
+            console.error('Errore durante il caricamento del file CSV.');
+          }
+        }
+      };
+      xhr.open('GET', file, true);
+      xhr.send();
+    }
+
+    function processData(csvData) {
+      var lines = csvData.split('\n');
+      var products = {};
+
+      var headers = lines[0].split(',');
+      for (var i = 1; i < lines.length; i++) {
+        var line = lines[i].split(',');
+        if (line.length === headers.length) {
+          var product = {};
+          for (var j = 0; j < headers.length; j++) {
+            product[headers[j]] = line[j];
+          }
+
+          var section = product.section;
+          if (!products[section]) {
+            products[section] = [];
+          }
+
+          products[section].push(product);
+        }
+      }
+
+      return products;
+    }
+
+    function generateHTML(products) {
+      var container = document.getElementById('products-container');
+
+      for (var section in products) {
+        if (products.hasOwnProperty(section)) {
+          var sectionHeader = document.createElement('h2');
+          sectionHeader.textContent = section;
+          sectionHeader.id = section.toLowerCase();
+          container.appendChild(sectionHeader);
+
+          var sectionProducts = products[section];
+          for (var i = 0; i < sectionProducts.length; i++) {
+            var product = sectionProducts[i];
+            var html = `
+              <div class="product">
+                <div class="descriptions">
+                  <p>
+                    <img class="it_flag" src="" alt="IT">
+                    <span>${product.italian_name}</span>
+                  </p>
+                  <p>
+                    <img class="en_flag" src="" alt="EN">
+                    <span>${product.name}</span>
+                  </p>
+                </div>
+                <div class="price">
+                  <strong>${product.price}</strong>
+                </div>
+              </div>
+            `;
+            container.innerHTML += html;
+          }
+        }
+      }
+
+      // Chiama la funzione per caricare le immagini
+      loadImages();
+    }
+
+    loadCSVFile('products/products.csv');
+  </script>
+
+  <div id="scrollToTopButton"></div>
+
+  <script>
+    var scrollToTopButton = document.getElementById('scrollToTopButton');
+    scrollToTopButton.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <script> /* GESTIONE SCROLL TO SECTION */
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+
+  <script>
+  var folderPath = "images/flags/";
+
+  function loadImages() {
+    var itFlags = document.querySelectorAll('.it_flag');
+    var enFlags = document.querySelectorAll('.en_flag');
+
+    itFlags.forEach(function(imgTag) {
+      imgTag.src = folderPath + 'it_flag.png';
+    });
+
+    enFlags.forEach(function(imgTag) {
+      imgTag.src = folderPath + 'en_flag.png';
+    });
+  }
+
+  // Chiama la funzione per caricare le immagini
+  loadImages();
+</script>
+
+</body>
+</html>
