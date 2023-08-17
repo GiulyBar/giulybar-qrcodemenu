@@ -380,7 +380,7 @@
 
             console.log('Product:', product);
 
-            var priceValue = parseFloat(product.price).toFixed(2); // Converte il prezzo in numero decimale
+            var priceValue = parseFloat(product.price.replace(/[^\d.-]/g, '')).toFixed(2); // Converte il prezzo in numero decimale
             var html = `
               <div class="product">
                 <div class="descriptions">
