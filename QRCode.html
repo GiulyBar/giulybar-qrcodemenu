@@ -320,22 +320,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-
-      var folderPath = "images/flags/";
-
-      function loadImages() {
-        var itFlags = document.querySelectorAll('.it_flag');
-        var enFlags = document.querySelectorAll('.en_flag');
-
-        itFlags.forEach(function(imgTag) {
-          imgTag.src = folderPath + 'it_flag.png';
-        });
-
-        enFlags.forEach(function(imgTag) {
-          imgTag.src = folderPath + 'en_flag.png';
-        });
-      }
-
+          
       // Chiama la funzione per caricare le immagini
       loadImages();
 
@@ -440,6 +425,23 @@
         section.scrollIntoView({ behavior: 'smooth' });
       }
     }
+  </script>
+
+  <script>
+  var folderPath = "images/flags/";
+
+  function loadImages() {
+    var itFlags = document.querySelectorAll('.it_flag');
+    var enFlags = document.querySelectorAll('.en_flag');
+
+    itFlags.forEach(function(imgTag) {
+      imgTag.src = folderPath + 'it_flag.png';
+    });
+
+    enFlags.forEach(function(imgTag) {
+      imgTag.src = folderPath + 'en_flag.png';
+    });
+  }
   </script>
 
 </body>
