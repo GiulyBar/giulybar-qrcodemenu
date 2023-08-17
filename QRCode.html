@@ -379,21 +379,21 @@
             var product = sectionProducts[i];
 
             console.log('Product:', product);
-            
+
             var html = `
               <div class="product">
                 <div class="descriptions">
                   <p>
                     <img class="it_flag" src="" alt="IT">
-                    <span>${product.italian_name}</span>
+                    <span>${product.italian_name.trim()}</span>
                   </p>
                   <p>
                     <img class="en_flag" src="" alt="EN">
-                    <span>${product.name}</span>
+                    <span>${product.name.trim()}</span>
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.price} €</strong>
+                  <strong>${product.price.trim()} €</strong>
                 </div>
               </div>
             `;
