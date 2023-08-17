@@ -349,6 +349,8 @@
             product[headers[j]] = line[j];
           }
 
+          product.price = parseFloat(product.price.replace(' €', '').replace(',', '.'));
+
           var section = product.section;
           if (!products[section]) {
             products[section] = [];
