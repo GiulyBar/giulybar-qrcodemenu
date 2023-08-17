@@ -374,6 +374,7 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
+            var priceValue = product.price ? parseFloat(product.price.replace(/[^0-9.-]/g, '')).toFixed(2) : 'N/A'; // Verifica se il campo price è definito
             var html = `
               <div class="product">
                 <div class="descriptions">
@@ -387,11 +388,11 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${parseFloat(product.price).toFixed(2)}</strong>
+                  <strong>${priceValue !== 'N/A' ? priceValue + ' €' : priceValue}</strong>
                 </div>
               </div>
             `;
-            container.innerHTML += html;
+            container.insertAdjacentHTML('beforeend', html);
           }
         }
       }
