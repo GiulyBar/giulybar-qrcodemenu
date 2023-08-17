@@ -319,9 +319,7 @@
 <div id="products-container"></div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-      function loadCSVFile(file) {
+    function loadCSVFile(file) {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -348,8 +346,7 @@
         if (line.length === headers.length) {
           var product = {};
           for (var j = 0; j < headers.length; j++) {
-            var value = line[j].trim();
-            product[headers[j]] = value;
+            product[headers[j]] = line[j];
           }
 
           var section = product.section;
@@ -377,28 +374,24 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
-
-            console.log('Product:', product);
-
-          var priceValue = product.price ? parseFloat(product.price.replace(/[^\d.-]/g, '')).toFixed(2) : 'N/A'; // Verifica se il campo price è definito
-          var html = `
-            <div class="product">
-              <div class="descriptions">
-                <p>
-                  <img class="it_flag" src="" alt="IT">
-                  <span>${product.italian_name}</span>
-                </p>
-                <p>
-                  <img class="en_flag" src="" alt="EN">
-                  <span>${product.name}</span>
-                </p>
+            var html = `
+              <div class="product">
+                <div class="descriptions">
+                  <p>
+                    <img class="it_flag" src="" alt="IT">
+                    <span>${product.italian_name}</span>
+                  </p>
+                  <p>
+                    <img class="en_flag" src="" alt="EN">
+                    <span>${product.name}</span>
+                  </p>
+                </div>
+                <div class="price">
+                  <strong>${product.price}</strong>
+                </div>
               </div>
-              <div class="price">
-                <strong>${priceValue !== 'N/A' ? priceValue + ' €' : priceValue}</strong>
-              </div>
-            </div>
-          `;
-            container.insertAdjacentHTML('beforeend', html);
+            `;
+            container.innerHTML += html;
           }
         }
       }
@@ -407,8 +400,7 @@
       loadImages();
     }
 
-      loadCSVFile('products/products.csv');
-    });
+    loadCSVFile('products/products.csv');
   </script>
 
   <div id="scrollToTopButton"></div>
@@ -444,7 +436,10 @@
       imgTag.src = folderPath + 'en_flag.png';
     });
   }
-  </script>
+
+  // Chiama la funzione per caricare le immagini
+  loadImages();
+</script>
 
 </body>
 </html>
