@@ -346,14 +346,14 @@
         if (line.length === headers.length) {
           var product = {};
           for (var j = 0; j < headers.length; j++) {
-            var value = line[j].trim();
-            if (headers[j] === 'price') {
-              value = parseFloat(value.replace(' €', '').replace(',', '.').replace('\r', ''));
-            }
-            product[headers[j]] = value;
+            var key = headers[j].trim(); // Rimuove eventuali spazi extra
+            var value = line[j].trim(); // Rimuove eventuali spazi extra
+            product[key] = value;
           }
 
-          console.log(product);
+          if (product.price) {
+            product.price = parseFloat(product.price.replace(' €', '').replace(',', '.'));
+          }
 
           var section = product.section;
           if (!products[section]) {
@@ -393,7 +393,7 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.value.toFixed(2)} €</strong>
+                  <strong>${product.price}</strong>
                 </div>
               </div>
             `;
