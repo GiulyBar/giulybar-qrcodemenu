@@ -351,11 +351,11 @@
 
           console.log(product);
 
-          // Esegue la sostituzione del carattere di ritorno a capo direttamente qui
-          product.price = product.price.replace('\r', '');
-
-          // Ora esegue la conversione del prezzo
-          product.price = parseFloat(product.price.replace(' €', '').replace(',', '.'));
+          // Controlla se il campo price è definito e non è vuoto
+          if (product.price && product.price.trim() !== '') {
+              // Esegue la sostituzione del carattere di ritorno a capo e la conversione del prezzo
+              product.price = parseFloat(product.price.replace('\r', '').replace(' €', '').replace(',', '.'));
+          }
 
           var section = product.section;
           if (!products[section]) {
