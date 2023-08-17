@@ -374,11 +374,6 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
-
-            console.log('Product:', product);
-
-            var numericPrice = product.price.replace('.',',')
-
             var html = `
               <div class="product">
                 <div class="descriptions">
@@ -388,7 +383,7 @@
                   </p>
                   <p>
                     <img class="en_flag" src="" alt="EN">
-                    <span>${numericPrice}</span>
+                    <span>${product.name}</span>
                   </p>
                 </div>
                 <div class="price">
@@ -396,7 +391,7 @@
                 </div>
               </div>
             `;
-            container.insertAdjacentHTML('beforeend', html);
+            container.innerHTML += html;
           }
         }
       }
