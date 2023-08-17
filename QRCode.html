@@ -376,7 +376,6 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
-            var price = product.price.replace('€', '').replace('\r', '').trim();
             var html = `
               <div class="product">
                 <div class="descriptions">
@@ -390,7 +389,7 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${price} €</strong>
+                  <strong>${product.price} €</strong>
                 </div>
               </div>
             `;
