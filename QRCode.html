@@ -345,16 +345,15 @@
         var line = lines[i].split(',');
         if (line.length === headers.length) {
           var product = {};
-      for (var j = 0; j < headers.length; j++) {
-        var value = line[j].trim();
-        if (headers[j] === 'price') {
-          value = parseFloat(value.replace(' €', '').replace(',', '.').replace('\r', ''));
-        }
-        product[headers[j]] = value;
+          for (var j = 0; j < headers.length; j++) {
+            var value = line[j].trim();
+            if (headers[j] === 'price') {
+              value = parseFloat(value.replace(' €', '').replace(',', '.').replace('\r', ''));
+            }
+            product[headers[j]] = value;
+          }
 
           console.log(product);
-
-          console.log(JSON.stringify(product, null, 2)); // Visualizza l'oggetto in formato JSON
 
           var section = product.section;
           if (!products[section]) {
@@ -394,7 +393,7 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.price}</strong>
+                  <strong>${product.price} €</strong>
                 </div>
               </div>
             `;
