@@ -391,9 +391,7 @@
                 </div>
               </div>
             `;
-            container.innerHTML += html;
-
-            console.log('Generated Product HTML:', product); // Aggiungi questo console.log
+            container.insertAdjacentHTML('beforeend', html);
           }
         }
       }
