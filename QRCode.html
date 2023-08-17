@@ -319,15 +319,6 @@
 <div id="products-container"></div>
 
   <script>
-
-    function formatPrice(priceString) {
-      const numericPrice = parseFloat(priceString.replace(/[^\d.-]/g, ''));
-      if (!isNaN(numericPrice)) {
-        return numericPrice.toFixed(2) + ' €';
-      }
-      return 'N/A';
-    }
-    
     function loadCSVFile(file) {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -386,6 +377,8 @@
 
             console.log('Product:', product);
 
+            var numericPrice = product.price.replace('.',',')
+
             var html = `
               <div class="product">
                 <div class="descriptions">
@@ -395,11 +388,11 @@
                   </p>
                   <p>
                     <img class="en_flag" src="" alt="EN">
-                    <span>${product.name}</span>
+                    <span>${numericPrice}</span>
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${formatPrice(product.price)}</strong>
+                  <strong>${product.price}</strong>
                 </div>
               </div>
             `;
