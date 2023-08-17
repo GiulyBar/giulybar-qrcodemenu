@@ -349,8 +349,6 @@
             product[headers[j]] = line[j];
           }
 
-          product.price = parseFloat((product.price || "0").replace(/[^\d.-]/g, ''));
-
           var section = product.section;
           if (!products[section]) {
             products[section] = [];
@@ -389,7 +387,7 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.price.toFixed(2)} €</strong>
+                  <strong>${product.price}</strong>
                 </div>
               </div>
             `;
