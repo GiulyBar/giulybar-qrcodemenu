@@ -321,9 +321,6 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-      // Chiama la funzione per caricare le immagini
-      loadImages();
-
       function loadCSVFile(file) {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -400,6 +397,9 @@
           }
         }
       }
+
+      // Chiama la funzione per caricare le immagini
+      loadImages();
     }
 
       loadCSVFile('products/products.csv');
