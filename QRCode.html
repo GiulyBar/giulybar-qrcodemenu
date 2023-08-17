@@ -349,7 +349,7 @@
           var product = {};
           for (var j = 0; j < headers.length; j++) {
             var value = line[j].trim();
-            product[headers[j]] = line[j];
+            product[headers[j]] = value;
           }
 
           var section = product.section;
@@ -377,9 +377,6 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
-
-            console.log('Product:', product);
-            
             var html = `
               <div class="product">
                 <div class="descriptions">
