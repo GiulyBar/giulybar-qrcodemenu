@@ -348,8 +348,7 @@
         if (line.length === headers.length) {
           var product = {};
           for (var j = 0; j < headers.length; j++) {
-            var value = line[j].trim();
-            product[headers[j]] = value;
+            product[headers[j]] = line[j];
           }
 
           var section = product.section;
