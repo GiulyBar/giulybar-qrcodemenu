@@ -389,11 +389,11 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.price}</strong>
+                  <strong>${product.price.toFixed(2)} €</strong>
                 </div>
               </div>
             `;
-            container.innerHTML += html;
+            container.insertAdjacentHTML('beforeend', html);
           }
         }
       }
