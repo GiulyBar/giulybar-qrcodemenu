@@ -349,6 +349,10 @@
             product[headers[j]] = line[j];
           }
 
+          console.log(product);
+
+          product.price = product.price.replace('\r','');
+
           var section = product.section;
           if (!products[section]) {
             products[section] = [];
@@ -374,11 +378,6 @@
           var sectionProducts = products[section];
           for (var i = 0; i < sectionProducts.length; i++) {
             var product = sectionProducts[i];
-
-            product.price = product.price.replace('\r','');
-
-            console.log('Product:', product);
-
             var html = `
               <div class="product">
                 <div class="descriptions">
