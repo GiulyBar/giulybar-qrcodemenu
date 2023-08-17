@@ -345,17 +345,14 @@
         var line = lines[i].split(',');
         if (line.length === headers.length) {
           var product = {};
-          for (var j = 0; j < headers.length; j++) {
-            product[headers[j]] = line[j];
-          }
+      for (var j = 0; j < headers.length; j++) {
+        var value = line[j].trim();
+        if (headers[j] === 'price') {
+          value = parseFloat(value.replace(' €', '').replace(',', '.').replace('\r', ''));
+        }
+        product[headers[j]] = value;
 
           console.log(product);
-
-          // Controlla se il campo price è definito e non è vuoto
-          if (product.price && product.price.trim() !== '') {
-              // Esegue la sostituzione del carattere di ritorno a capo e la conversione del prezzo
-              product.price = parseFloat(product.price.replace('\r', '').replace(' €', '').replace(',', '.'));
-          }
 
           console.log(JSON.stringify(product, null, 2)); // Visualizza l'oggetto in formato JSON
 
@@ -397,7 +394,7 @@
                   </p>
                 </div>
                 <div class="price">
-                  <strong>${product.price.toFixed(2)} €</strong>
+                  <strong>${product.price}</strong>
                 </div>
               </div>
             `;
